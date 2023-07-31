@@ -2,7 +2,7 @@
 
 # Function to run the curl command
 run_curl() {
-	curl http://0.0.0.0:5000/generate_recipe
+	curl http://0.0.0.0:$"PORT"/generate_recipe
 }
 
 # Loop to continuously run the curl command
