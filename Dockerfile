@@ -1,3 +1,4 @@
+
 # Use the official Python 3.10 image as the base image
 FROM python:3.10
 
@@ -28,5 +29,6 @@ COPY loop.sh /app/loop.sh
 # Make the script executable inside the container
 RUN chmod +x /app/loop.sh
 
-# Command to run the Flask app using Gunicorn and the loop.sh script
-CMD ["bash", "-c", "gunicorn app.main:app --bind 0.0.0.0:5000 & /app/loop.sh"]
+# Command to run the Flask app using Gunicorn with a 60-second timeout and the loop.sh script
+CMD ["bash", "-c", "gunicorn app.main:app --bind 0.0.0.0:5000 --timeout 300 & /app/loop.sh"]
+
