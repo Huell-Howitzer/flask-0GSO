@@ -60,7 +60,8 @@ app.config["MONGO_URI"] = mongo_uri
 client = MongoClient(mongo_uri)
 
 # Access the database
-db = client["database_name"]  # Replace 'database_name' with your actual database name
+# Replace 'database_name' with your actual database name
+db = client["database_name"]
 
 # Access the collection
 collection = db["recipes"]
@@ -76,6 +77,8 @@ mongo = PyMongo(app)
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # Sample random ingredient function
+
+
 def get_random_foods_from_csv(file_path):
     with open(file_path, "r") as csvfile:
         reader = csv.reader(csvfile)
@@ -83,6 +86,7 @@ def get_random_foods_from_csv(file_path):
     num_items = random.randint(1, 10)
     random_foods = random.sample(food_list, num_items)
     return [food[0] for food in random_foods]
+
 
 def get_image_from_title(title, size="512x512"):
     openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -230,7 +234,7 @@ def generate_recipe():
         random_ingredients = get_random_foods_from_csv("/app/data/food.csv")
     else:
         random_ingredients = get_random_foods_from_csv(
-            "food.csv"
+            "./app/data/food.csv"
         )
 
     print(random_ingredients)
